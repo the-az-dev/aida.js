@@ -1,0 +1,20 @@
+{
+  "name": "aida_js",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "aida:dev:ts": "ts-node-dev src/dev-env/main.ts",
+    "aida:dev:js": "nodemon src/dev-env/main.js",
+    "aida:build-lib": "ts-node lib/common/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0"
+  }
+}
