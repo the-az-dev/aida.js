@@ -1,25 +1,12 @@
-import { createServer } from "http";
-import { Routes } from "./globals";
-import {initializeRoutes} from "./init";
 import log from "./utils/logger";
+import { ServerApp } from './globals';
 
 export default function startServer(port: number = 3000) {
-    initializeRoutes();
-    const server = createServer((req, res) => {
-        if (!req.url) return;
-
-        const routeHandler = Routes.get(req.url);
-        if (routeHandler) {
-            routeHandler(req, res);
-            log(`${req.method} - ${req.url} : ${res.statusCode}`);
+    ServerApp.listen(port, (token: any) => {
+        if (token) {
+            console.log('Сервер запущено на порту 3000');
         } else {
-            log.asTrace(`Requests mapping not found at project`);
-            res.writeHead(404, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "Requests_mapping not found" }));
+            console.log('Не вдалося запустити сервер');
         }
-    });
-
-    server.listen(port, () => {
-
     });
 }

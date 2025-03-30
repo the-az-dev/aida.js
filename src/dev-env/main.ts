@@ -1,19 +1,45 @@
-import {Controller, GET, POST, startServer} from "../common";
+import {Controller, Route, startServer, Service, Inject, Middleware, UseMiddleware} from '../common';
+import {enhanceRes} from "../common/utils";
 
-@Controller("/123")
-class Dev{
-    @GET('/test')
-    getTest() {
-        return [{ id: 1 }, { id: 2 }, { id: 3 }];
-    }
-
-    @POST('/create', 'multipart/form-data')
-    createUser(body: any) {
-        return { message: "User created", user: body };
+@Middleware()
+export class LoggerMiddleware {
+    async handle(res: any, req: any, next: () => void) {
+        const authToken: String = req.getHeader('ath');
+        if(!authToken.includes('123')){
+            const error = JSON.stringify({
+                status: 'forbidden',
+                statusText: 'Token invalid',
+            });
+            await res.writeStatus('403').writeHeader('Content-Type', 'application/json').end(error);
+        }
+        next();
     }
 }
 
-//
+@Service()
+export class UserService {
+    getUsers() {
+        return [{ id: 1, name: 'John Doe' }];
+    }
+}
 
 
-startServer(8089);
+@Controller('/users')
+@UseMiddleware(LoggerMiddleware)
+export class UserController {
+
+    @Inject()
+    private userService: UserService;
+
+    @Route('', 'get')
+    getUsers(res: any, req: any) {
+        res.writeStatus('200 OK').writeHeader('Content-Type', 'application/json').end(JSON.stringify(this.userService.getUsers())).close();
+    }
+
+    @Route('/', 'post')
+    createUser(res: any, req: any) {
+        // Логіка створення користувача
+    }
+}
+
+startServer(1234);

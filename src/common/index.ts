@@ -1,12 +1,12 @@
-import { Controller, GET, PUT, POST, PATCH, DELETE } from "./decorators";
+import { Controller, Route, Service, Inject, UseMiddleware, Middleware } from "./decorators";
 import startServer from "./runner";
 
 export {
     Controller,
-    GET,
-    PATCH,
-    POST,
-    DELETE,
-    PUT,
+    Route,
     startServer,
+    Service,
+    Inject,
+    Middleware,
+    UseMiddleware,
 };
