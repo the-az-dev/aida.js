@@ -8,7 +8,7 @@
 
 --- 
 
-AIDA.JS is strong format back-end framework based on `http` module at NodeJS. Our goal of this framework is to make more
+AIDA.JS is strong format back-end framework based on `uWebSocket.js` module at NodeJS. Our goal of this framework is to make more
 flexible and easy-dev variant for new projects.
 
 <div align="center"> 
