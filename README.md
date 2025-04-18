@@ -19,7 +19,7 @@ flexible and easy-dev variant for new projects.
 
 We saw, that NestJS provide main goal to create easy back-end based on `ExpressJS` or `Fastify` solutions which can make
 lots of troubles at productivity and callback times. That's why we focus on productivity and small callback times even 
-at basic setups. Furthermore, we want to add Vue 3 supporting for some visual element's (ex. creating Admin page or 
+at basic setups. Furthermore, we want to add Vue 3 / React 19 supporting for some visual element's (ex. creating Admin page or 
 creating custom OpenAPI visual documentation).
 
 ---
